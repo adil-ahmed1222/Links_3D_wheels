@@ -14,7 +14,7 @@ export function waLink(message: string) {
   return `${BUSINESS.whatsapp}?text=${encodeURIComponent(message)}`;
 }
 
-export type Brand = { name: string; slug: string; country: string; market: "Indian" | "International"; desc: string; categories: string[]; website: string; logo?: string };
+export type Brand = { name: string; slug: string; country: string; market: "Indian" | "International"; desc: string; categories: string[]; website: string; logo?: string | undefined };
 
 const logoFiles = import.meta.glob<{ default: { url: string } }>("../assets/brands/*.svg.asset.json", { eager: true });
 const logoFor = (slug: string) => logoFiles[`../assets/brands/${slug}.svg.asset.json`]?.default.url;

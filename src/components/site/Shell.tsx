@@ -132,7 +132,7 @@ export function PageHero({ eyebrow, title, sub }: { eyebrow: string; title: stri
   );
 }
 
-export function BrandLogo({ brand, className = "h-20" }: { brand: { name: string; logo?: string }; className?: string }) {
+export function BrandLogo({ brand, className = "h-20" }: { brand: { name: string; logo?: string | undefined }; className?: string }) {
   return (
     <div className={`flex items-center justify-center rounded-lg bg-paper px-4 py-3 ${className}`}>
       {brand.logo ? (
