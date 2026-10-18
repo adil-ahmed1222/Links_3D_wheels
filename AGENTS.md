@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Brand data lives in src/lib/business.ts; logos are auto-matched by slug from src/assets/brands/<slug>.svg.asset.json, so adding a brand only needs a data row (and optionally a logo pointer). Why: one source for home, directory and brand pages.
