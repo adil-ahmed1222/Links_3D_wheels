@@ -5,7 +5,7 @@ import { PageHero } from "@/components/site/Shell";
 import { BUSINESS, CATEGORIES, SERVICES, waLink } from "@/lib/business";
 
 export const Route = createFileRoute("/contact")({
-  validateSearch: (s: Record<string, unknown>): { service?: string } => (typeof s.service === "string" ? { service: s.service } : {}),
+  validateSearch: (s: Record<string, unknown>): { service?: string } => (typeof s["service"] === "string" ? { service: s["service"] as string } : {}),
   head: () => ({
     meta: [
       { title: "Book a Service & Contact — LINKS 3D Wheel Alignment Hyderabad" },
@@ -21,7 +21,7 @@ const inp = "w-full rounded-md border border-input bg-background px-3 py-3 text-
 
 function Contact() {
   const { service } = Route.useSearch();
-  const [f, setF] = useState({ name: "", phone: "", vehicle: "", size: "", service: service ?? SERVICES[0].title, date: "", notes: "" });
+  const [f, setF] = useState({ name: "", phone: "", vehicle: "", size: "", service: service ?? SERVICES[0]!.title, date: "", notes: "" });
   const [err, setErr] = useState("");
   const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => setF({ ...f, [k]: e.target.value });
 

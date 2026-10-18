@@ -15,7 +15,7 @@ export const Route = createFileRoute("/about")({
   component: About,
 });
 
-const FAQ = [
+const FAQ: [string, string][] = [
   ["What is 3D wheel alignment?", "A method that uses cameras and wheel-mounted targets to measure wheel angles, so they can be adjusted to your vehicle manufacturer's specifications."],
   ["When should I check my wheel alignment?", "If the car pulls to one side, the steering wheel is off-centre, tyres wear unevenly, after hitting a pothole, or when fitting new tyres."],
   ["What does wheel balancing do?", "It evens out weight around the wheel and tyre to help reduce vibration at speed."],
