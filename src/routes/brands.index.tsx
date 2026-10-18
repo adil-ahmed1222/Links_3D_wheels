@@ -3,7 +3,7 @@ import { useState } from "react";
 import { PageHero, BrandLogo } from "@/components/site/Shell";
 import { BRANDS, waLink } from "@/lib/business";
 
-export const Route = createFileRoute("/brands")({
+export const Route = createFileRoute("/brands/")({
   head: () => ({
     meta: [
       { title: "Tyre Brands — MRF, Apollo, Michelin, Pirelli & more | LINKS 3D" },
