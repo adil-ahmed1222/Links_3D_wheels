@@ -14,31 +14,43 @@ export function waLink(message: string) {
   return `${BUSINESS.whatsapp}?text=${encodeURIComponent(message)}`;
 }
 
-export type Brand = { name: string; country: string; market: "Indian" | "International"; desc: string; categories: string[] };
+export type Brand = { name: string; slug: string; country: string; market: "Indian" | "International"; desc: string; categories: string[]; website: string; logo?: string };
 
-export const BRANDS: Brand[] = [
-  { name: "MRF", country: "India", market: "Indian", desc: "Chennai-headquartered tyre maker producing tyres for cars, two-wheelers and commercial vehicles.", categories: ["Car", "SUV", "Two-Wheeler", "Commercial"] },
-  { name: "Apollo Tyres", country: "India", market: "Indian", desc: "Indian tyre manufacturer with passenger, SUV and truck ranges.", categories: ["Car", "SUV", "Commercial"] },
-  { name: "CEAT", country: "India", market: "Indian", desc: "RPG Group tyre brand covering cars, bikes and commercial vehicles.", categories: ["Car", "SUV", "Two-Wheeler", "Commercial"] },
-  { name: "JK Tyre", country: "India", market: "Indian", desc: "Indian manufacturer known for radial tyres across segments.", categories: ["Car", "SUV", "Commercial"] },
-  { name: "BKT", country: "India", market: "Indian", desc: "Balkrishna Industries — specialist in off-highway and agricultural tyres.", categories: ["Off-Road", "Commercial"] },
-  { name: "TVS Eurogrip", country: "India", market: "Indian", desc: "Two-wheeler and three-wheeler tyre brand from TVS Srichakra.", categories: ["Two-Wheeler"] },
-  { name: "Birla Tyres", country: "India", market: "Indian", desc: "Indian tyre brand with commercial and passenger offerings.", categories: ["Car", "Commercial"] },
-  { name: "Michelin", country: "France", market: "International", desc: "French tyre maker with car, SUV, performance and two-wheeler ranges; also present in India.", categories: ["Car", "SUV", "Performance", "Two-Wheeler"] },
-  { name: "Bridgestone", country: "Japan", market: "International", desc: "Japanese tyre manufacturer with operations in India.", categories: ["Car", "SUV", "Performance", "Commercial"] },
-  { name: "Goodyear", country: "USA", market: "International", desc: "American tyre brand with passenger and SUV ranges; present in India.", categories: ["Car", "SUV", "Commercial"] },
-  { name: "Continental", country: "Germany", market: "International", desc: "German tyre and automotive company; also available in India.", categories: ["Car", "SUV", "Performance"] },
-  { name: "Yokohama", country: "Japan", market: "International", desc: "Japanese tyre maker known for performance and SUV tyres; present in India.", categories: ["Car", "SUV", "Performance"] },
-  { name: "Pirelli", country: "Italy", market: "International", desc: "Italian brand focused on premium and high-performance tyres.", categories: ["Performance", "SUV"] },
-  { name: "Hankook", country: "South Korea", market: "International", desc: "Korean manufacturer of passenger, SUV and performance tyres.", categories: ["Car", "SUV", "Performance"] },
-  { name: "Dunlop", country: "UK", market: "International", desc: "Long-established tyre brand for cars and motorcycles.", categories: ["Car", "Performance", "Two-Wheeler"] },
-  { name: "Sumitomo", country: "Japan", market: "International", desc: "Japanese rubber company producing passenger and light-truck tyres.", categories: ["Car", "SUV"] },
-  { name: "Giti Tire", country: "Singapore", market: "International", desc: "Singapore-based tyre group with passenger and commercial ranges.", categories: ["Car", "Commercial"] },
-  { name: "Toyo Tires", country: "Japan", market: "International", desc: "Japanese brand known for SUV and off-road tyres.", categories: ["SUV", "Off-Road", "Performance"] },
-  { name: "BFGoodrich", country: "USA", market: "International", desc: "Michelin group brand renowned for all-terrain tyres.", categories: ["Off-Road", "SUV"] },
-  { name: "Kumho Tire", country: "South Korea", market: "International", desc: "Korean tyre maker with passenger and SUV ranges.", categories: ["Car", "SUV"] },
-  { name: "Nexen Tire", country: "South Korea", market: "International", desc: "Korean brand offering passenger and SUV tyres.", categories: ["Car", "SUV"] },
+const logoFiles = import.meta.glob<{ default: { url: string } }>("../assets/brands/*.svg.asset.json", { eager: true });
+const logoFor = (slug: string) => logoFiles[`../assets/brands/${slug}.svg.asset.json`]?.default.url;
+const slugify = (n: string) => n.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+type B = Omit<Brand, "slug" | "logo">;
+const RAW: B[] = [
+  { name: "MRF", country: "India", market: "Indian", website: "https://www.mrftyres.com", desc: "Chennai-headquartered tyre maker producing tyres for cars, two-wheelers and commercial vehicles.", categories: ["Car", "SUV", "Two-Wheeler", "Commercial"] },
+  { name: "Apollo Tyres", country: "India", market: "Indian", website: "https://www.apollotyres.com", desc: "Indian tyre manufacturer with passenger, SUV and truck ranges.", categories: ["Car", "SUV", "Commercial"] },
+  { name: "CEAT", country: "India", market: "Indian", website: "https://www.ceat.com", desc: "RPG Group tyre brand covering cars, bikes and commercial vehicles.", categories: ["Car", "SUV", "Two-Wheeler", "Commercial"] },
+  { name: "JK Tyre", country: "India", market: "Indian", website: "https://www.jktyre.com", desc: "Indian manufacturer known for radial tyres across segments.", categories: ["Car", "SUV", "Commercial"] },
+  { name: "BKT", country: "India", market: "Indian", website: "https://www.bkt-tires.com", desc: "Balkrishna Industries — specialist in off-highway and agricultural tyres.", categories: ["Off-Road", "Commercial"] },
+  { name: "TVS Eurogrip", country: "India", market: "Indian", website: "https://www.tvseurogrip.com", desc: "Two-wheeler and three-wheeler tyre brand from TVS Srichakra.", categories: ["Two-Wheeler"] },
+  { name: "Birla Tyres", country: "India", market: "Indian", website: "https://www.birlatyres.com", desc: "Indian tyre brand with commercial and passenger offerings.", categories: ["Car", "Commercial"] },
+  { name: "Michelin", country: "France", market: "International", website: "https://www.michelin.in", desc: "French tyre maker with car, SUV, performance and two-wheeler ranges; also present in India.", categories: ["Car", "SUV", "Performance", "Two-Wheeler"] },
+  { name: "Bridgestone", country: "Japan", market: "International", website: "https://www.bridgestone.co.in", desc: "Japanese tyre manufacturer with operations in India.", categories: ["Car", "SUV", "Performance", "Commercial"] },
+  { name: "Goodyear", country: "USA", market: "International", website: "https://www.goodyear.co.in", desc: "American tyre brand with passenger and SUV ranges; present in India.", categories: ["Car", "SUV", "Commercial"] },
+  { name: "Continental", country: "Germany", market: "International", website: "https://www.continental-tyres.co.in", desc: "German tyre and automotive company; also available in India.", categories: ["Car", "SUV", "Performance"] },
+  { name: "Yokohama", country: "Japan", market: "International", website: "https://www.yokohama-india.com", desc: "Japanese tyre maker known for performance and SUV tyres; present in India.", categories: ["Car", "SUV", "Performance"] },
+  { name: "Pirelli", country: "Italy", market: "International", website: "https://www.pirelli.com", desc: "Italian brand focused on premium and high-performance tyres.", categories: ["Performance", "SUV"] },
+  { name: "Hankook", country: "South Korea", market: "International", website: "https://www.hankooktire.com", desc: "Korean manufacturer of passenger, SUV and performance tyres.", categories: ["Car", "SUV", "Performance"] },
+  { name: "Dunlop", country: "UK", market: "International", website: "https://www.dunlop.eu", desc: "Long-established tyre brand for cars and motorcycles.", categories: ["Car", "Performance", "Two-Wheeler"] },
+  { name: "Sumitomo", country: "Japan", market: "International", website: "https://www.srigroup.co.jp", desc: "Japanese rubber company producing passenger and light-truck tyres.", categories: ["Car", "SUV"] },
+  { name: "Giti Tire", country: "Singapore", market: "International", website: "https://www.giti.com", desc: "Singapore-based tyre group with passenger and commercial ranges.", categories: ["Car", "Commercial"] },
+  { name: "Toyo Tires", country: "Japan", market: "International", website: "https://www.toyotires.com", desc: "Japanese brand known for SUV and off-road tyres.", categories: ["SUV", "Off-Road", "Performance"] },
+  { name: "BFGoodrich", country: "USA", market: "International", website: "https://www.bfgoodrichtires.com", desc: "Michelin group brand renowned for all-terrain tyres.", categories: ["Off-Road", "SUV"] },
+  { name: "Kumho Tire", country: "South Korea", market: "International", website: "https://www.kumhotire.com", desc: "Korean tyre maker with passenger and SUV ranges.", categories: ["Car", "SUV"] },
+  { name: "Nexen Tire", country: "South Korea", market: "International", website: "https://www.nexentire.com", desc: "Korean brand offering passenger and SUV tyres.", categories: ["Car", "SUV"] },
+  { name: "Vredestein", country: "Netherlands", market: "International", website: "https://www.vredestein.com", desc: "Dutch-origin premium tyre brand, part of Apollo Tyres.", categories: ["Car", "SUV", "Performance"] },
+  { name: "Maxxis", country: "Taiwan", market: "International", website: "https://www.maxxis.com", desc: "Taiwanese brand with car, SUV and two-wheeler tyres.", categories: ["Car", "SUV", "Two-Wheeler", "Off-Road"] },
+  { name: "Falken", country: "Japan", market: "International", website: "https://www.falkentyre.com", desc: "Sumitomo Rubber brand focused on performance and SUV tyres.", categories: ["Performance", "SUV"] },
+  { name: "Firestone", country: "USA", market: "International", website: "https://www.firestone.com", desc: "Bridgestone group brand with passenger and commercial tyres.", categories: ["Car", "Commercial"] },
 ];
+
+export const BRANDS: Brand[] = RAW.map((b) => { const slug = slugify(b.name); return { ...b, slug, logo: logoFor(slug) }; });
+export const brandBySlug = (slug: string) => BRANDS.find((b) => b.slug === slug);
 
 export type Product = { id: string; brand: string; name: string; category: string; width: number; ratio: number; rim: number };
 
