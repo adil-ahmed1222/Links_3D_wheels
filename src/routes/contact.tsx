@@ -37,7 +37,7 @@ function Contact() {
     <>
       <PageHero eyebrow="Book a Service" title="Let's get you rolling" sub="Fill in your details and we'll open WhatsApp with your request ready to send. Prefer to talk? Just call." />
       <section className="mx-auto grid max-w-7xl gap-12 px-5 py-16 lg:grid-cols-[1.3fr_1fr]">
-        <form onSubmit={submit} className="grid gap-4 rounded-xl border border-border bg-graphite p-7 sm:grid-cols-2">
+        <form onSubmit={submit} className="grid gap-4 glass-card rounded-2xl p-7 sm:grid-cols-2">
           <input className={inp} placeholder="Full name *" value={f.name} onChange={set("name")} maxLength={80} />
           <input className={inp} placeholder="Mobile number *" inputMode="tel" value={f.phone} onChange={set("phone")} maxLength={14} />
           <select className={inp} value={f.vehicle} onChange={set("vehicle")}><option value="">Vehicle type</option>{CATEGORIES.map((c) => <option key={c}>{c}</option>)}</select>
@@ -49,9 +49,9 @@ function Contact() {
           <button className="rounded-full bg-primary py-3.5 text-sm font-semibold uppercase tracking-wider text-primary-foreground shadow-glow sm:col-span-2">Send request on WhatsApp</button>
         </form>
         <div className="space-y-6">
-          <a href={BUSINESS.tel} className="flex items-center gap-4 rounded-xl border border-border p-5 hover:border-primary"><Phone className="text-primary" /><div><p className="eyebrow">Call now</p><p className="font-display text-2xl font-bold">{BUSINESS.phone}</p></div></a>
-          <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer" className="flex items-center gap-4 rounded-xl border border-border p-5 hover:border-primary"><MessageCircle className="text-primary" /><div><p className="eyebrow">WhatsApp</p><p className="font-display text-2xl font-bold">Chat with us</p></div></a>
-          <a href={BUSINESS.maps} target="_blank" rel="noreferrer" className="flex items-center gap-4 rounded-xl border border-border p-5 hover:border-primary"><MapPin className="shrink-0 text-primary" /><div><p className="eyebrow">Get directions</p><p className="text-sm text-muted-foreground">{BUSINESS.address}</p></div></a>
+          <a href={BUSINESS.tel} className="flex items-center gap-4 glass-card rounded-2xl p-5 hover:border-primary"><Phone className="text-primary" /><div><p className="eyebrow">Call now</p><p className="font-display text-2xl font-bold">{BUSINESS.phone}</p></div></a>
+          <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer" className="flex items-center gap-4 glass-card rounded-2xl p-5 hover:border-primary"><MessageCircle className="text-primary" /><div><p className="eyebrow">WhatsApp</p><p className="font-display text-2xl font-bold">Chat with us</p></div></a>
+          <a href={BUSINESS.maps} target="_blank" rel="noreferrer" className="flex items-center gap-4 glass-card rounded-2xl p-5 hover:border-primary"><MapPin className="shrink-0 text-primary" /><div><p className="eyebrow">Get directions</p><p className="text-sm text-muted-foreground">{BUSINESS.address}</p></div></a>
           <p className="text-sm text-muted-foreground">Sunday also open. Please call to confirm timings.</p>
           <iframe title="Map to LINKS 3D" src={BUSINESS.mapsEmbed} loading="lazy" className="h-64 w-full rounded-xl border border-border grayscale" />
         </div>

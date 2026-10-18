@@ -4,6 +4,7 @@ import { PageHero } from "@/components/site/Shell";
 import { CATEGORIES, PRODUCTS, waLink } from "@/lib/business";
 
 export const Route = createFileRoute("/tyres")({
+  validateSearch: (s: Record<string, unknown>): { brand?: string; category?: string } => ({ ...(typeof s["brand"] === "string" ? { brand: s["brand"] as string } : {}), ...(typeof s["category"] === "string" ? { category: s["category"] as string } : {}) }),
   head: () => ({
     meta: [
       { title: "Tyre Finder — Search by Size & Vehicle | LINKS 3D Hyderabad" },
@@ -19,7 +20,8 @@ const uniq = (a: number[]) => [...new Set(a)].sort((x, y) => x - y);
 const sel = "w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm";
 
 function Tyres() {
-  const [f, setF] = useState({ category: "", width: "", ratio: "", rim: "", brand: "", q: "" });
+  const sp = Route.useSearch();
+  const [f, setF] = useState({ category: sp.category ?? "", width: "", ratio: "", rim: "", brand: sp.brand ?? "", q: "" });
   const [sort, setSort] = useState("name");
   const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => setF({ ...f, [k]: e.target.value });
 
@@ -37,7 +39,7 @@ function Tyres() {
     <>
       <PageHero eyebrow="Tyre Finder" title="Find the perfect tyre for your drive" sub="Filter by vehicle and size. Prices and stock change often — send an enquiry and we'll confirm current availability." />
       <section className="mx-auto max-w-7xl px-5 py-12">
-        <div className="grid gap-3 rounded-xl border border-border bg-graphite p-5 md:grid-cols-4 lg:grid-cols-7">
+        <div className="grid gap-3 glass-card rounded-2xl p-5 md:grid-cols-4 lg:grid-cols-7">
           <select aria-label="Vehicle category" className={sel} value={f.category} onChange={set("category")}><option value="">All vehicles</option>{CATEGORIES.map((c) => <option key={c}>{c}</option>)}</select>
           <select aria-label="Width" className={sel} value={f.width} onChange={set("width")}><option value="">Width</option>{uniq(PRODUCTS.map((p) => p.width)).map((v) => <option key={v}>{v}</option>)}</select>
           <select aria-label="Aspect ratio" className={sel} value={f.ratio} onChange={set("ratio")}><option value="">Ratio</option>{uniq(PRODUCTS.map((p) => p.ratio)).map((v) => <option key={v}>{v}</option>)}</select>
@@ -62,7 +64,7 @@ function Tyres() {
             {list.map((p) => {
               const s = `${p.width}/${p.ratio} R${p.rim}`;
               return (
-                <article key={p.id} className="flex flex-col rounded-xl border border-border bg-graphite p-6 transition-colors hover:border-primary/60">
+                <article key={p.id} className="glass-card flex flex-col rounded-2xl p-6 transition-all hover:-translate-y-1 hover:border-primary/60">
                   <p className="eyebrow">{p.brand}</p>
                   <h3 className="mt-2 font-display text-2xl font-semibold">{p.name}</h3>
                   <p className="mt-1 text-sm text-muted-foreground">{p.category}</p>

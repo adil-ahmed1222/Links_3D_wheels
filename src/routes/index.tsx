@@ -5,6 +5,46 @@ import alignment from "@/assets/alignment.jpg";
 import tread from "@/assets/tyre-tread.jpg";
 import logo from "@/assets/links3d-logo.png.asset.json";
 import { BRANDS, BUSINESS, SERVICES } from "@/lib/business";
+import { BrandLogo } from "@/components/site/Shell";
+import { useState } from "react";
+import gPerf from "@/assets/gallery-performance.jpg";
+import gLux from "@/assets/gallery-luxury.jpg";
+import gSuv from "@/assets/gallery-suv.jpg";
+import gOff from "@/assets/gallery-offroad.jpg";
+
+const GALLERY = [
+  { key: "Performance", img: gPerf, title: "Grip at every apex", text: "High-performance tyres for sports cars and fast sedans.", cat: "Sports Car" },
+  { key: "Luxury", img: gLux, title: "Quiet, refined comfort", text: "Comfort-focused tyres for luxury sedans.", cat: "Luxury Car" },
+  { key: "SUVs", img: gSuv, title: "Confidence on every road", text: "Highway and touring tyres for premium SUVs.", cat: "SUV" },
+  { key: "Off-road", img: gOff, title: "Built for the trail", text: "All-terrain and mud tyres for 4x4s.", cat: "4x4 / Off-Road" },
+] as const;
+
+function Gallery() {
+  const [i, setI] = useState(0);
+  const g = GALLERY[i]!;
+  return (
+    <section className="mx-auto max-w-7xl px-5 py-24">
+      <p className="eyebrow">Drive Inspiration</p>
+      <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl">Tyres for every machine</h2>
+      <div className="mt-8 flex flex-wrap gap-2" role="tablist">
+        {GALLERY.map((x, n) => (
+          <button key={x.key} role="tab" aria-selected={n === i} onClick={() => setI(n)} className={`rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-widest transition-colors ${n === i ? "bg-primary text-primary-foreground" : "glass-card text-muted-foreground hover:text-foreground"}`}>{x.key}</button>
+        ))}
+      </div>
+      <div className="relative mt-6 aspect-[16/10] overflow-hidden rounded-2xl md:aspect-[21/9]">
+        {GALLERY.map((x, n) => (
+          <img key={x.key} src={x.img} alt={`${x.key} vehicle`} loading="lazy" width={1600} height={1008} className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${n === i ? "opacity-100" : "opacity-0"}`} />
+        ))}
+        <div className="glass-card absolute bottom-4 left-4 right-4 max-w-md rounded-xl p-6 md:bottom-8 md:left-8">
+          <h3 className="font-display text-2xl font-bold md:text-3xl">{g.title}</h3>
+          <p className="mt-2 text-sm text-muted-foreground">{g.text}</p>
+          <Link to="/tyres" search={{ category: g.cat }} className="mt-4 inline-block text-xs font-semibold uppercase tracking-widest text-primary">Find {g.key.toLowerCase()} tyres →</Link>
+        </div>
+      </div>
+      <p className="mt-3 text-xs text-muted-foreground">Images are for inspiration only and don't imply any manufacturer partnership.</p>
+    </section>
+  );
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -22,7 +62,7 @@ function Index() {
   return (
     <>
       <section className="relative flex min-h-[100svh] items-center overflow-hidden">
-        <img src={hero} alt="Black sports car under red studio light" width={1920} height={1088} className="absolute inset-0 h-full w-full object-cover object-[70%_center]" />
+        <img src={hero} alt="Black sports car under red studio light" width={1920} height={1088} className="absolute inset-0 h-full w-full animate-drift object-cover object-[70%_center]" />
         <div className="absolute inset-0 bg-hero-overlay" />
         <div className="absolute inset-0 bg-fade-bottom" />
         <div className="relative mx-auto w-full max-w-7xl px-5 pt-24">
@@ -30,10 +70,10 @@ function Index() {
           <h1 className="mt-5 max-w-3xl animate-rise font-display text-6xl font-bold leading-[0.9] md:text-8xl">
             <span className="text-metal">Engineered for the road.</span><br />Built for <span className="text-primary">performance.</span>
           </h1>
-          <p className="mt-6 max-w-xl animate-rise text-lg text-muted-foreground">Premium tyres, precision 3D wheel alignment, expert balancing, and professional tyre care — all in one destination in Hyderabad.</p>
-          <div className="mt-9 flex flex-wrap gap-3">
+          <p style={{ animationDelay: "150ms" }} className="mt-6 max-w-xl animate-rise text-lg text-muted-foreground">Premium tyres, precision 3D wheel alignment, expert balancing, and professional tyre care — all in one destination in Hyderabad.</p>
+          <div style={{ animationDelay: "300ms" }} className="mt-9 flex animate-rise flex-wrap gap-3">
             <Link to="/tyres" className="rounded-full bg-primary px-7 py-3.5 text-sm font-semibold uppercase tracking-wider text-primary-foreground shadow-glow hover:opacity-90">Explore Tyres</Link>
-            <Link to="/contact" className="rounded-full border border-silver/40 px-7 py-3.5 text-sm font-semibold uppercase tracking-wider hover:border-foreground">Book a Service</Link>
+            <Link to="/contact" className="glass-card rounded-full px-7 py-3.5 text-sm font-semibold uppercase tracking-wider hover:border-foreground">Book a Service</Link>
           </div>
           <div className="mt-14 flex flex-wrap gap-x-8 gap-y-3 text-xs uppercase tracking-[0.2em] text-silver">
             <span>◆ 3D Wheel Alignment</span><span>◆ German Technology</span><span>◆ Tyres & Tubes Available</span>
@@ -73,22 +113,28 @@ function Index() {
         </div>
       </section>
 
-      <section className="bg-paper py-24 text-paper-foreground">
+      <section className="border-y border-border py-24">
         <div className="mx-auto max-w-7xl px-5">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="eyebrow">Tyres & Brands</p>
-              <h2 className="mt-3 font-display text-5xl font-bold">Enquire about leading brands</h2>
+              <h2 className="mt-3 font-display text-4xl font-bold md:text-6xl">Enquire about leading brands</h2>
             </div>
-            <Link to="/brands" className="text-sm font-semibold uppercase tracking-widest text-primary">All brands →</Link>
+            <Link to="/brands" className="text-sm font-semibold uppercase tracking-widest text-primary">Explore all brands →</Link>
           </div>
-          <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-paper-foreground/10 bg-paper-foreground/10 sm:grid-cols-4 lg:grid-cols-7">
-            {BRANDS.slice(0, 14).map((b) => (
-              <div key={b.name} className="flex h-24 items-center justify-center bg-paper px-3 text-center font-display text-xl font-bold uppercase tracking-wide">{b.name}</div>
+        </div>
+        <div className="mt-12 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_10%,black_90%,transparent)]">
+          <div className="flex w-max animate-marquee gap-4">
+            {[...BRANDS, ...BRANDS].map((b, n) => (
+              <Link key={n} to="/brands/$slug" params={{ slug: b.slug }} aria-hidden={n >= BRANDS.length} tabIndex={n >= BRANDS.length ? -1 : 0} className="w-52 shrink-0 transition-transform hover:-translate-y-1">
+                <BrandLogo brand={b} className="h-24" />
+              </Link>
             ))}
           </div>
         </div>
       </section>
+
+      <Gallery />
 
       <section className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-24 md:grid-cols-2">
         <img src={tread} alt="Performance tyre tread close-up" loading="lazy" width={1200} height={1200} className="aspect-square w-full rounded-xl object-cover" />
