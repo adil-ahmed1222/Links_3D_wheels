@@ -27,12 +27,12 @@ export function Header() {
     return () => window.removeEventListener("scroll", on);
   }, []);
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled || open ? "glass border-b border-border" : ""}`}>
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-5">
-        <Link to="/" aria-label="LINKS 3D home" className="shrink-0"><Logo className="h-14" /></Link>
+    <header className={`fixed inset-x-0 z-50 px-3 transition-all duration-300 ${scrolled ? "top-2" : "top-4"}`}>
+      <div className={`glass-card mx-auto flex max-w-7xl items-center justify-between gap-4 rounded-2xl px-4 transition-all duration-300 ${scrolled ? "h-16" : "h-20"}`}>
+        <Link to="/" aria-label="LINKS 3D home" className="shrink-0 rounded-md focus-visible:outline-2 focus-visible:outline-primary"><Logo className={scrolled ? "h-11" : "h-14"} /></Link>
         <nav className="hidden items-center gap-7 lg:flex">
           {NAV.map((n) => (
-            <Link key={n.to} to={n.to} className="text-sm uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground" activeProps={{ className: "text-foreground" }} activeOptions={{ exact: true }}>
+            <Link key={n.to} to={n.to} className="nav-link text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground" activeProps={{ className: "text-foreground" }} activeOptions={{ exact: true }}>
               {n.label}
             </Link>
           ))}
@@ -42,14 +42,15 @@ export function Header() {
           <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="rounded-full border border-border p-2.5 hover:border-primary"><MessageCircle className="h-4 w-4" /></a>
           <Link to="/contact" className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold uppercase tracking-wider text-primary-foreground shadow-glow hover:opacity-90">Book a Service</Link>
         </div>
-        <button className="lg:hidden" aria-label="Menu" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
+        <button className="rounded-full p-2 lg:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
       </div>
       {open && (
-        <div className="border-t border-border px-5 pb-6 lg:hidden">
+        <div className="glass-card mx-auto mt-2 max-w-7xl animate-rise rounded-2xl px-5 pb-6 lg:hidden">
           {NAV.map((n) => (
-            <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="block border-b border-border py-4 font-display text-2xl uppercase">{n.label}</Link>
+            <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="block border-b border-border py-4 font-display text-xl font-semibold uppercase">{n.label}</Link>
           ))}
-          <div className="mt-5 grid grid-cols-2 gap-3">
+          <div className="mt-5 grid grid-cols-3 gap-2">
+            <Link to="/contact" onClick={() => setOpen(false)} className="rounded-md border border-border py-3 text-center text-sm font-semibold">Book</Link>
             <a href={BUSINESS.tel} className="rounded-md border border-border py-3 text-center text-sm font-semibold">Call Now</a>
             <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer" className="rounded-md bg-primary py-3 text-center text-sm font-semibold text-primary-foreground">WhatsApp</a>
           </div>
@@ -128,5 +129,17 @@ export function PageHero({ eyebrow, title, sub }: { eyebrow: string; title: stri
         {sub && <p className="mt-4 max-w-2xl animate-rise text-muted-foreground">{sub}</p>}
       </div>
     </section>
+  );
+}
+
+export function BrandLogo({ brand, className = "h-20" }: { brand: { name: string; logo?: string }; className?: string }) {
+  return (
+    <div className={`flex items-center justify-center rounded-lg bg-paper px-4 py-3 ${className}`}>
+      {brand.logo ? (
+        <img src={brand.logo} alt={`${brand.name} logo`} loading="lazy" className="max-h-full max-w-full object-contain" />
+      ) : (
+        <span className="font-display text-xl font-bold uppercase tracking-tight text-paper-foreground">{brand.name}</span>
+      )}
+    </div>
   );
 }
