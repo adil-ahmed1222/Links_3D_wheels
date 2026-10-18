@@ -1,0 +1,78 @@
+export const BUSINESS = {
+  name: "LINKS 3D Wheel Alignment",
+  phone: "9393220111",
+  tel: "tel:9393220111",
+  whatsapp: "https://wa.me/919393220111",
+  address: "Beside Crystal Bakery, Pillar No. 99 & 100, Moghal Nagar, Ring Road, Hyderabad",
+  maps: "https://www.google.com/maps/search/?api=1&query=" +
+    encodeURIComponent("Beside Crystal Bakery, Pillar No. 99 & 100, Moghal Nagar, Ring Road, Hyderabad"),
+  mapsEmbed: "https://www.google.com/maps?q=" +
+    encodeURIComponent("Moghal Nagar Ring Road Hyderabad") + "&output=embed",
+};
+
+export function waLink(message: string) {
+  return `${BUSINESS.whatsapp}?text=${encodeURIComponent(message)}`;
+}
+
+export type Brand = { name: string; country: string; market: "Indian" | "International"; desc: string; categories: string[] };
+
+export const BRANDS: Brand[] = [
+  { name: "MRF", country: "India", market: "Indian", desc: "Chennai-headquartered tyre maker producing tyres for cars, two-wheelers and commercial vehicles.", categories: ["Car", "SUV", "Two-Wheeler", "Commercial"] },
+  { name: "Apollo Tyres", country: "India", market: "Indian", desc: "Indian tyre manufacturer with passenger, SUV and truck ranges.", categories: ["Car", "SUV", "Commercial"] },
+  { name: "CEAT", country: "India", market: "Indian", desc: "RPG Group tyre brand covering cars, bikes and commercial vehicles.", categories: ["Car", "SUV", "Two-Wheeler", "Commercial"] },
+  { name: "JK Tyre", country: "India", market: "Indian", desc: "Indian manufacturer known for radial tyres across segments.", categories: ["Car", "SUV", "Commercial"] },
+  { name: "BKT", country: "India", market: "Indian", desc: "Balkrishna Industries — specialist in off-highway and agricultural tyres.", categories: ["Off-Road", "Commercial"] },
+  { name: "TVS Eurogrip", country: "India", market: "Indian", desc: "Two-wheeler and three-wheeler tyre brand from TVS Srichakra.", categories: ["Two-Wheeler"] },
+  { name: "Birla Tyres", country: "India", market: "Indian", desc: "Indian tyre brand with commercial and passenger offerings.", categories: ["Car", "Commercial"] },
+  { name: "Michelin", country: "France", market: "International", desc: "French tyre maker with car, SUV, performance and two-wheeler ranges; also present in India.", categories: ["Car", "SUV", "Performance", "Two-Wheeler"] },
+  { name: "Bridgestone", country: "Japan", market: "International", desc: "Japanese tyre manufacturer with operations in India.", categories: ["Car", "SUV", "Performance", "Commercial"] },
+  { name: "Goodyear", country: "USA", market: "International", desc: "American tyre brand with passenger and SUV ranges; present in India.", categories: ["Car", "SUV", "Commercial"] },
+  { name: "Continental", country: "Germany", market: "International", desc: "German tyre and automotive company; also available in India.", categories: ["Car", "SUV", "Performance"] },
+  { name: "Yokohama", country: "Japan", market: "International", desc: "Japanese tyre maker known for performance and SUV tyres; present in India.", categories: ["Car", "SUV", "Performance"] },
+  { name: "Pirelli", country: "Italy", market: "International", desc: "Italian brand focused on premium and high-performance tyres.", categories: ["Performance", "SUV"] },
+  { name: "Hankook", country: "South Korea", market: "International", desc: "Korean manufacturer of passenger, SUV and performance tyres.", categories: ["Car", "SUV", "Performance"] },
+  { name: "Dunlop", country: "UK", market: "International", desc: "Long-established tyre brand for cars and motorcycles.", categories: ["Car", "Performance", "Two-Wheeler"] },
+  { name: "Sumitomo", country: "Japan", market: "International", desc: "Japanese rubber company producing passenger and light-truck tyres.", categories: ["Car", "SUV"] },
+  { name: "Giti Tire", country: "Singapore", market: "International", desc: "Singapore-based tyre group with passenger and commercial ranges.", categories: ["Car", "Commercial"] },
+  { name: "Toyo Tires", country: "Japan", market: "International", desc: "Japanese brand known for SUV and off-road tyres.", categories: ["SUV", "Off-Road", "Performance"] },
+  { name: "BFGoodrich", country: "USA", market: "International", desc: "Michelin group brand renowned for all-terrain tyres.", categories: ["Off-Road", "SUV"] },
+  { name: "Kumho Tire", country: "South Korea", market: "International", desc: "Korean tyre maker with passenger and SUV ranges.", categories: ["Car", "SUV"] },
+  { name: "Nexen Tire", country: "South Korea", market: "International", desc: "Korean brand offering passenger and SUV tyres.", categories: ["Car", "SUV"] },
+];
+
+export type Product = { id: string; brand: string; name: string; category: string; width: number; ratio: number; rim: number };
+
+// Representative catalogue for enquiry only — no live price or stock is shown.
+export const PRODUCTS: Product[] = [
+  { id: "1", brand: "MRF", name: "ZLX", category: "Hatchback", width: 165, ratio: 80, rim: 14 },
+  { id: "2", brand: "MRF", name: "Wanderer Street", category: "SUV", width: 235, ratio: 65, rim: 17 },
+  { id: "3", brand: "Apollo Tyres", name: "Alnac 4G", category: "Sedan", width: 205, ratio: 55, rim: 16 },
+  { id: "4", brand: "Apollo Tyres", name: "Apterra AT2", category: "4x4 / Off-Road", width: 265, ratio: 65, rim: 17 },
+  { id: "5", brand: "CEAT", name: "SecuraDrive", category: "Sedan", width: 195, ratio: 55, rim: 16 },
+  { id: "6", brand: "CEAT", name: "Zoom Rad X1", category: "Motorcycle / Scooter", width: 110, ratio: 70, rim: 17 },
+  { id: "7", brand: "JK Tyre", name: "UX Royale", category: "Hatchback", width: 185, ratio: 65, rim: 15 },
+  { id: "8", brand: "Michelin", name: "Pilot Sport 4", category: "Sports Car", width: 225, ratio: 45, rim: 18 },
+  { id: "9", brand: "Michelin", name: "Primacy 4", category: "Sedan", width: 205, ratio: 55, rim: 16 },
+  { id: "10", brand: "Bridgestone", name: "Turanza T005", category: "Luxury Car", width: 225, ratio: 50, rim: 17 },
+  { id: "11", brand: "Bridgestone", name: "Dueler H/T", category: "SUV", width: 265, ratio: 65, rim: 17 },
+  { id: "12", brand: "Goodyear", name: "Assurance TripleMax", category: "Hatchback", width: 185, ratio: 60, rim: 15 },
+  { id: "13", brand: "Continental", name: "UltraContact UC6", category: "Electric Vehicle", width: 215, ratio: 60, rim: 16 },
+  { id: "14", brand: "Yokohama", name: "Geolandar A/T", category: "4x4 / Off-Road", width: 265, ratio: 70, rim: 16 },
+  { id: "15", brand: "Pirelli", name: "P Zero", category: "Sports Car", width: 245, ratio: 40, rim: 19 },
+  { id: "16", brand: "Hankook", name: "Ventus S1 evo3", category: "Luxury Car", width: 245, ratio: 45, rim: 18 },
+  { id: "17", brand: "BFGoodrich", name: "All-Terrain T/A KO2", category: "4x4 / Off-Road", width: 265, ratio: 65, rim: 17 },
+  { id: "18", brand: "Toyo Tires", name: "Open Country A/T III", category: "SUV", width: 235, ratio: 60, rim: 18 },
+  { id: "19", brand: "Apollo Tyres", name: "EnduRace", category: "Commercial Vehicle", width: 215, ratio: 75, rim: 16 },
+  { id: "20", brand: "TVS Eurogrip", name: "Protorq", category: "Motorcycle / Scooter", width: 100, ratio: 80, rim: 17 },
+];
+
+export const CATEGORIES = ["Hatchback", "Sedan", "SUV", "Luxury Car", "Sports Car", "4x4 / Off-Road", "Electric Vehicle", "Commercial Vehicle", "Motorcycle / Scooter"];
+
+export const SERVICES = [
+  { title: "3D Wheel Alignment", desc: "Alignment checked and corrected to your vehicle's specifications using 3D alignment equipment.", when: "After hitting a pothole, uneven tyre wear, or the car pulling to one side." },
+  { title: "Wheel Balancing", desc: "Helps reduce vibration and promotes a smoother drive.", when: "Steering vibration at speed, or when new tyres are fitted." },
+  { title: "Tyre Changing", desc: "Professional tyre removal and installation with suitable equipment.", when: "Worn, damaged or upgraded tyres." },
+  { title: "Nitrogen Air", desc: "Nitrogen inflation for those who prefer it. Correct pressure and regular checks still matter.", when: "Any visit — ask at the counter." },
+  { title: "Rim Throw", desc: "Rim service as listed on our board. Ask us for details about this service.", when: "Bent or damaged rims — call us to discuss." },
+  { title: "Tyres & Tubes", desc: "All types of tyres and tubes for different vehicles, subject to availability.", when: "Enquire with your tyre size." },
+];
