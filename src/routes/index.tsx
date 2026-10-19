@@ -4,7 +4,7 @@ import hero from "@/assets/hero-car.jpg";
 import technology from "@/assets/wheel-machine.jpg";
 import tread from "@/assets/tyre-tread.jpg";
 import logo from "@/assets/links3d-logo.png";
-import { BRANDS, BUSINESS, SERVICES } from "@/lib/business";
+import { BRANDS, BUSINESS, SERVICES, TYRE_SPECIALIST } from "@/lib/business";
 import { BrandLogo } from "@/components/site/Shell";
 import { useState } from "react";
 import gPerf from "@/assets/gallery-performance.jpg";
@@ -91,6 +91,7 @@ function Index() {
               <span className="font-display text-sm text-primary">{String(i + 1).padStart(2, "0")}</span>
               <h3 className="mt-3 font-display text-2xl font-semibold">{s.title}</h3>
               <p className="mt-3 text-sm text-muted-foreground">{s.desc}</p>
+              {"specialist" in s && s.specialist && <a href={TYRE_SPECIALIST.tel} className="mt-4 block text-sm font-semibold text-primary">{TYRE_SPECIALIST.name} · {TYRE_SPECIALIST.display}</a>}
               <Link to="/contact" search={{ service: s.title }} className="mt-6 inline-block text-xs font-semibold uppercase tracking-widest text-silver group-hover:text-primary">Enquire Now →</Link>
             </div>
           ))}
@@ -155,9 +156,11 @@ function Index() {
             <p className="mt-4 text-muted-foreground">{BUSINESS.address}. Sunday also open.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href={BUSINESS.tel} className="flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground"><Phone className="h-4 w-4" />Call {BUSINESS.phone}</a>
+              <a href={TYRE_SPECIALIST.tel} className="flex items-center gap-2 rounded-full border border-primary px-6 py-3 text-sm font-semibold text-primary"><Phone className="h-4 w-4" />Puncture & tyres · {TYRE_SPECIALIST.display}</a>
               <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer" className="flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold hover:border-foreground"><MessageCircle className="h-4 w-4" />WhatsApp</a>
               <a href={BUSINESS.maps} target="_blank" rel="noreferrer" className="flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold hover:border-foreground"><MapPin className="h-4 w-4" />Directions</a>
             </div>
+            <p className="mt-4 text-sm text-muted-foreground">{TYRE_SPECIALIST.name}, {TYRE_SPECIALIST.role} — wheel puncture and tyre-related services.</p>
           </div>
           <img src={logo} alt="LINKS 3D Wheel Alignment logo" loading="lazy" className="w-full rounded-xl" />
         </div>

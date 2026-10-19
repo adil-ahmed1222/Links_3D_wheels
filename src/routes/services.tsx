@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { PageHero } from "@/components/site/Shell";
-import { BUSINESS, SERVICES } from "@/lib/business";
+import { PageHero, TyreSpecialistCard } from "@/components/site/Shell";
+import { BUSINESS, SERVICES, TYRE_SPECIALIST } from "@/lib/business";
 import alignment from "@/assets/alignment.jpg";
 
 export const Route = createFileRoute("/services")({
@@ -20,6 +20,9 @@ function Services() {
     <>
       <PageHero eyebrow="Our Services" title="Professional wheel & tyre care" />
       <img src={alignment} alt="3D wheel alignment in progress" width={1600} height={1008} className="h-52 w-full object-cover sm:h-80 md:h-[28rem]" />
+      <section className="mx-auto max-w-7xl px-4 pt-12 sm:px-5 sm:pt-16">
+        <TyreSpecialistCard />
+      </section>
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-5 sm:py-16">
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {SERVICES.map((s, i) => (
@@ -31,6 +34,11 @@ function Services() {
               <h2 className="mt-4 font-display text-2xl font-bold sm:text-3xl">{s.title}</h2>
               <p className="mt-2 flex-1 text-sm text-muted-foreground sm:text-base">{s.desc}</p>
               <p className="mt-3 text-sm"><span className="text-silver">When you may need it:</span> <span className="text-muted-foreground">{s.when}</span></p>
+              {"specialist" in s && s.specialist && (
+                <a href={TYRE_SPECIALIST.tel} className="mt-4 text-sm font-semibold text-primary">
+                  {TYRE_SPECIALIST.name}, {TYRE_SPECIALIST.role} · {TYRE_SPECIALIST.display}
+                </a>
+              )}
             </article>
           ))}
         </div>

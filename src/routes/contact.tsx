@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Phone, MessageCircle, MapPin } from "lucide-react";
-import { PageHero } from "@/components/site/Shell";
+import { PageHero, TyreSpecialistCard } from "@/components/site/Shell";
 import { BUSINESS, CATEGORIES, SERVICES, waLink } from "@/lib/business";
 
 export const Route = createFileRoute("/contact")({
@@ -9,7 +9,7 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Book a Service & Contact — LINKS 3D Wheel Alignment Hyderabad" },
-      { name: "description", content: `Book wheel alignment, balancing or tyre service at LINKS 3D Wheel Alignment. Call 9393220111 or WhatsApp. ${BUSINESS.address}.` },
+      { name: "description", content: `Book wheel alignment, balancing or tyre service at LINKS 3D Wheel Alignment. Call 9393220111, or Mohammed Salman on 7675034429 for wheel puncture and tyre services. ${BUSINESS.address}.` },
       { property: "og:title", content: "Book a Service | LINKS 3D" },
       { property: "og:description", content: `Call, WhatsApp or get directions to LINKS 3D Wheel Alignment, ${BUSINESS.address}.` },
     ],
@@ -49,7 +49,8 @@ function Contact() {
           <button className="rounded-full bg-primary py-3.5 text-sm font-semibold uppercase tracking-wider text-primary-foreground shadow-glow sm:col-span-2">Send request on WhatsApp</button>
         </form>
         <div className="space-y-6">
-          <a href={BUSINESS.tel} className="flex items-center gap-4 glass-card rounded-2xl p-5 hover:border-primary"><Phone className="text-primary" /><div><p className="eyebrow">Call now</p><p className="font-display text-2xl font-bold">{BUSINESS.phone}</p></div></a>
+          <TyreSpecialistCard />
+          <a href={BUSINESS.tel} className="flex items-center gap-4 glass-card rounded-2xl p-5 hover:border-primary"><Phone className="text-primary" /><div><p className="eyebrow">Workshop</p><p className="font-display text-2xl font-bold">{BUSINESS.phone}</p></div></a>
           <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer" className="flex items-center gap-4 glass-card rounded-2xl p-5 hover:border-primary"><MessageCircle className="text-primary" /><div><p className="eyebrow">WhatsApp</p><p className="font-display text-2xl font-bold">Chat with us</p></div></a>
           <a href={BUSINESS.maps} target="_blank" rel="noreferrer" className="flex items-center gap-4 glass-card rounded-2xl p-5 hover:border-primary"><MapPin className="shrink-0 text-primary" /><div><p className="eyebrow">Get directions</p><p className="text-sm text-muted-foreground">{BUSINESS.address}</p></div></a>
           <p className="text-sm text-muted-foreground">Sunday also open. Please call to confirm timings.</p>

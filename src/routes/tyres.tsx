@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { PageHero } from "@/components/site/Shell";
-import { CATEGORIES, PRODUCTS, waLink } from "@/lib/business";
+import { PageHero, TyreSpecialistCard } from "@/components/site/Shell";
+import { CATEGORIES, PRODUCTS, specialistWaLink } from "@/lib/business";
 
 export const Route = createFileRoute("/tyres")({
   validateSearch: (s: Record<string, unknown>): { brand?: string; category?: string } => ({ ...(typeof s["brand"] === "string" ? { brand: s["brand"] as string } : {}), ...(typeof s["category"] === "string" ? { category: s["category"] as string } : {}) }),
@@ -38,6 +38,9 @@ function Tyres() {
   return (
     <>
       <PageHero eyebrow="Tyre Finder" title="Find the perfect tyre for your drive" sub="Filter by vehicle and size. Prices and stock change often — send an enquiry and we'll confirm current availability." />
+      <section className="mx-auto max-w-7xl px-4 pt-10 sm:px-5">
+        <TyreSpecialistCard />
+      </section>
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-5 sm:py-12">
         <div className="grid gap-3 glass-card rounded-2xl p-5 md:grid-cols-4 lg:grid-cols-7">
           <select aria-label="Vehicle category" className={sel} value={f.category} onChange={set("category")}><option value="">All vehicles</option>{CATEGORIES.map((c) => <option key={c}>{c}</option>)}</select>
@@ -57,7 +60,7 @@ function Tyres() {
           <div className="mt-10 rounded-xl border border-dashed border-border p-12 text-center">
             <p className="font-display text-3xl font-bold">No match listed</p>
             <p className="mt-2 text-muted-foreground">We stock all types of tyres & tubes — ask us directly.</p>
-            <a href={waLink(`Hi LINKS 3D, I'm looking for tyres${size ? ` in size ${size}` : ""}${f.category ? ` for my ${f.category}` : ""}.`)} target="_blank" rel="noreferrer" className="mt-6 inline-block rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground">Enquire on WhatsApp</a>
+            <a href={specialistWaLink(`Hi Mohammed Salman, I'm looking for tyres${size ? ` in size ${size}` : ""}${f.category ? ` for my ${f.category}` : ""}.`)} target="_blank" rel="noreferrer" className="mt-6 inline-block rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground">Enquire on WhatsApp</a>
           </div>
         ) : (
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -70,7 +73,7 @@ function Tyres() {
                   <p className="mt-1 text-sm text-muted-foreground">{p.category}</p>
                   <p className="mt-5 font-display text-3xl font-bold">{s}</p>
                   <p className="mt-1 text-xs text-muted-foreground">Price & availability on request</p>
-                  <a href={waLink(`Hi LINKS 3D, please share price & availability for ${p.brand} ${p.name} ${s}.`)} target="_blank" rel="noreferrer" className="mt-6 rounded-full bg-primary py-2.5 text-center text-sm font-semibold text-primary-foreground">Enquire</a>
+                  <a href={specialistWaLink(`Hi Mohammed Salman, please share price & availability for ${p.brand} ${p.name} ${s}.`)} target="_blank" rel="noreferrer" className="mt-6 rounded-full bg-primary py-2.5 text-center text-sm font-semibold text-primary-foreground">Enquire</a>
                 </article>
               );
             })}

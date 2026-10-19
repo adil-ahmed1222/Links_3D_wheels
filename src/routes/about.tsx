@@ -25,6 +25,7 @@ const FAQ: [string, string][] = [
   ["Do you provide nitrogen air?", "Yes, nitrogen air is available."],
   ["Are tyres available for SUVs and luxury cars?", "All types of tyres and tubes are available, subject to stock. Send us your size to confirm."],
   ["How do I book a service?", "Use the Book a Service page, call 9393220111, or message us on WhatsApp."],
+  ["Who do I call for a wheel puncture or tyre service?", "Call Mohammed Salman, Specialised Technician, on 7675034429. He handles wheel puncture and tyre-related services."],
   ["Are you open on Sundays?", "Yes — Sunday also open. Please call to confirm timings."],
   ["How can I get directions?", `We're at ${BUSINESS.address}. Tap 'Directions' on the Contact page.`],
 ];

@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, Phone, X, MessageCircle, MapPin } from "lucide-react";
 import logo from "@/assets/links3d-logo.png";
-import { BUSINESS } from "@/lib/business";
+import { BUSINESS, TYRE_SPECIALIST, specialistWaLink } from "@/lib/business";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -71,7 +71,8 @@ export function Footer() {
         <div className="space-y-3 text-sm">
           <p className="eyebrow">Visit</p>
           <a href={BUSINESS.maps} target="_blank" rel="noreferrer" className="flex gap-2 text-muted-foreground hover:text-foreground"><MapPin className="h-4 w-4 shrink-0" />{BUSINESS.address}</a>
-          <a href={BUSINESS.tel} className="flex gap-2 text-muted-foreground hover:text-foreground"><Phone className="h-4 w-4" />{BUSINESS.phone}</a>
+          <a href={BUSINESS.tel} className="flex gap-2 text-muted-foreground hover:text-foreground"><Phone className="h-4 w-4 shrink-0" />{BUSINESS.phone}</a>
+          <a href={TYRE_SPECIALIST.tel} className="flex gap-2 text-muted-foreground hover:text-foreground"><Phone className="h-4 w-4 shrink-0 text-primary" /><span><span className="text-foreground">{TYRE_SPECIALIST.display}</span> — {TYRE_SPECIALIST.name}, {TYRE_SPECIALIST.role}. Wheel puncture and tyre services.</span></a>
         </div>
         <div className="grid grid-cols-2 gap-2 text-sm">
           <p className="eyebrow col-span-2">Explore</p>
@@ -116,6 +117,21 @@ export function Preloader() {
       <p className="mt-8 font-display text-4xl font-bold tracking-wider"><span className="text-metal">LINKS</span> <span className="text-primary">3D</span></p>
       <div className="mt-5 h-0.5 w-48 overflow-hidden bg-border"><div className="h-full bg-primary transition-all duration-200" style={{ width: `${progress}%` }} /></div>
       <p className="mt-4 text-[0.65rem] tracking-[0.4em] text-muted-foreground">PRECISION IN EVERY ROTATION</p>
+    </div>
+  );
+}
+
+export function TyreSpecialistCard() {
+  return (
+    <div className="glass-card rounded-2xl border-primary/40 p-5">
+      <p className="eyebrow">Wheel puncture & tyre services</p>
+      <p className="mt-2 font-display text-2xl font-bold">{TYRE_SPECIALIST.name}</p>
+      <p className="text-sm text-muted-foreground">{TYRE_SPECIALIST.role}</p>
+      <a href={TYRE_SPECIALIST.tel} className="mt-4 flex items-center gap-2 font-display text-3xl font-bold text-primary">{TYRE_SPECIALIST.display}</a>
+      <div className="mt-4 flex flex-wrap gap-2">
+        <a href={TYRE_SPECIALIST.tel} className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"><Phone className="h-4 w-4" />Call technician</a>
+        <a href={specialistWaLink("Hi Mohammed Salman, I need help with a wheel puncture or tyre service.")} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold hover:border-foreground"><MessageCircle className="h-4 w-4" />WhatsApp</a>
+      </div>
     </div>
   );
 }

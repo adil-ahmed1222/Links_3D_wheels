@@ -16,6 +16,20 @@ export function waLink(message: string) {
   return `${BUSINESS.whatsapp}?text=${encodeURIComponent(message)}`;
 }
 
+export const TYRE_SPECIALIST = {
+  name: "Mohammed Salman",
+  role: "Specialised Technician",
+  focus: "Wheel puncture and tyre-related services",
+  phone: "7675034429",
+  display: "76750 34429",
+  tel: "tel:7675034429",
+  whatsapp: "https://wa.me/917675034429",
+};
+
+export function specialistWaLink(message: string) {
+  return `${TYRE_SPECIALIST.whatsapp}?text=${encodeURIComponent(message)}`;
+}
+
 export type Brand = { name: string; slug: string; country: string; market: "Indian" | "International"; desc: string; categories: string[]; website: string; logo?: string | undefined };
 
 const logoFiles = import.meta.glob<string>("../assets/brands/*.{svg,png}", { eager: true, query: "?url", import: "default" });
@@ -87,9 +101,9 @@ export const CATEGORIES = ["Hatchback", "Sedan", "SUV", "Luxury Car", "Sports Ca
 export const SERVICES = [
   { title: "3D Wheel Alignment", desc: "Alignment checked and corrected to your vehicle's specifications using 3D alignment equipment.", when: "After hitting a pothole, uneven tyre wear, or the car pulling to one side." },
   { title: "Wheel Balancing", desc: "Helps reduce vibration and promotes a smoother drive.", when: "Steering vibration at speed, or when new tyres are fitted." },
-  { title: "Tyre Changing", desc: "Professional tyre removal and installation with suitable equipment.", when: "Worn, damaged or upgraded tyres." },
+  { title: "Tyre Changing", desc: "Professional tyre removal and installation with suitable equipment.", when: "Worn, damaged or upgraded tyres.", specialist: true },
   { title: "Nitrogen Air", desc: "Nitrogen inflation for those who prefer it. Correct pressure and regular checks still matter.", when: "Any visit — ask at the counter." },
   { title: "Rim Throw", desc: "Rim service as listed on our board. Ask us for details about this service.", when: "Bent or damaged rims — call us to discuss." },
   { title: "Alloy Wheel Throw", desc: "Alloy wheel throw checked and corrected so the wheel runs true.", when: "Vibration, a wobbling alloy wheel, or after a kerb or pothole hit." },
-  { title: "Tyres & Tubes", desc: "All types of tyres and tubes for different vehicles, subject to availability.", when: "Enquire with your tyre size." },
+  { title: "Tyres & Tubes", desc: "All types of tyres and tubes for different vehicles, subject to availability.", when: "Enquire with your tyre size.", specialist: true },
 ];
