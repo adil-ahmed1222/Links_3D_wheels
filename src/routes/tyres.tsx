@@ -17,7 +17,7 @@ export const Route = createFileRoute("/tyres")({
 });
 
 const uniq = (a: number[]) => [...new Set(a)].sort((x, y) => x - y);
-const sel = "w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm";
+const sel = "min-w-0 w-full rounded-md border border-input bg-background px-3 py-2.5 text-base sm:text-sm";
 
 function Tyres() {
   const sp = Route.useSearch();
@@ -38,7 +38,7 @@ function Tyres() {
   return (
     <>
       <PageHero eyebrow="Tyre Finder" title="Find the perfect tyre for your drive" sub="Filter by vehicle and size. Prices and stock change often — send an enquiry and we'll confirm current availability." />
-      <section className="mx-auto max-w-7xl px-5 py-12">
+      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-5 sm:py-12">
         <div className="grid gap-3 glass-card rounded-2xl p-5 md:grid-cols-4 lg:grid-cols-7">
           <select aria-label="Vehicle category" className={sel} value={f.category} onChange={set("category")}><option value="">All vehicles</option>{CATEGORIES.map((c) => <option key={c}>{c}</option>)}</select>
           <select aria-label="Width" className={sel} value={f.width} onChange={set("width")}><option value="">Width</option>{uniq(PRODUCTS.map((p) => p.width)).map((v) => <option key={v}>{v}</option>)}</select>

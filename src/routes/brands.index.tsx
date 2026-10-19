@@ -28,7 +28,7 @@ function Brands() {
   return (
     <>
       <PageHero eyebrow="Tyres & Brands" title="The brands we can help you find" sub="Indian and international manufacturers. Logos belong to their owners; listing a brand doesn't mean we're an authorised dealer or that it's in stock — enquire for your size." />
-      <section className="mx-auto max-w-7xl px-5 py-12">
+      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-5 sm:py-12">
         <div className="flex flex-wrap items-center gap-2">
           <input placeholder="Search brand or country…" value={q} onChange={(e) => setQ(e.target.value)} className="mr-2 w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm sm:w-64" />
           {["", "Indian", "International"].map((m) => <button key={m} className={chip(market === m)} onClick={() => setMarket(m)}>{m || "All"}</button>)}
@@ -40,8 +40,8 @@ function Brands() {
           {list.map((b) => (
             <article key={b.name} className="glass-card flex flex-col rounded-2xl p-6 transition-all hover:-translate-y-1 hover:border-primary/60">
               <BrandLogo brand={b} className="mb-5 h-28" />
-              <div className="flex items-start justify-between">
-                <h3 className="font-display text-3xl font-bold">{b.name}</h3>
+              <div className="flex flex-wrap items-start justify-between gap-2">
+                <h3 className="min-w-0 font-display text-2xl font-bold sm:text-3xl">{b.name}</h3>
                 <span className="text-xs text-muted-foreground">{b.country}</span>
               </div>
               <p className="mt-3 flex-1 text-sm text-muted-foreground">{b.desc}</p>

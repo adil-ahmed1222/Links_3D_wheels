@@ -9,15 +9,15 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Book a Service & Contact — LINKS 3D Wheel Alignment Hyderabad" },
-      { name: "description", content: "Book wheel alignment, balancing or tyre service. Call 9393220111 or WhatsApp. Beside Crystal Bakery, Pillar 99 & 100, Moghal Nagar, Ring Road, Hyderabad." },
+      { name: "description", content: `Book wheel alignment, balancing or tyre service at LINKS 3D Wheel Alignment. Call 9393220111 or WhatsApp. ${BUSINESS.address}.` },
       { property: "og:title", content: "Book a Service | LINKS 3D" },
-      { property: "og:description", content: "Call, WhatsApp or get directions to LINKS 3D in Moghal Nagar, Hyderabad." },
+      { property: "og:description", content: `Call, WhatsApp or get directions to LINKS 3D Wheel Alignment, ${BUSINESS.address}.` },
     ],
   }),
   component: Contact,
 });
 
-const inp = "w-full rounded-md border border-input bg-background px-3 py-3 text-sm focus:border-primary focus:outline-none";
+const inp = "min-w-0 w-full rounded-md border border-input bg-background px-3 py-3 text-base focus:border-primary focus:outline-none sm:text-sm";
 
 function Contact() {
   const { service } = Route.useSearch();
@@ -36,8 +36,8 @@ function Contact() {
   return (
     <>
       <PageHero eyebrow="Book a Service" title="Let's get you rolling" sub="Fill in your details and we'll open WhatsApp with your request ready to send. Prefer to talk? Just call." />
-      <section className="mx-auto grid max-w-7xl gap-12 px-5 py-16 lg:grid-cols-[1.3fr_1fr]">
-        <form onSubmit={submit} className="grid gap-4 glass-card rounded-2xl p-7 sm:grid-cols-2">
+      <section className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:gap-12 sm:px-5 sm:py-16 lg:grid-cols-[1.3fr_1fr]">
+        <form onSubmit={submit} className="grid min-w-0 gap-4 glass-card rounded-2xl p-4 sm:grid-cols-2 sm:p-7">
           <input className={inp} placeholder="Full name *" value={f.name} onChange={set("name")} maxLength={80} />
           <input className={inp} placeholder="Mobile number *" inputMode="tel" value={f.phone} onChange={set("phone")} maxLength={14} />
           <select className={inp} value={f.vehicle} onChange={set("vehicle")}><option value="">Vehicle type</option>{CATEGORIES.map((c) => <option key={c}>{c}</option>)}</select>

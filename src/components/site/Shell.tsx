@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, Phone, X, MessageCircle, MapPin } from "lucide-react";
-import logo from "@/assets/links3d-logo.png.asset.json";
+import logo from "@/assets/links3d-logo.png";
 import { BUSINESS } from "@/lib/business";
 
 const NAV = [
@@ -14,7 +14,7 @@ const NAV = [
 ] as const;
 
 export function Logo({ className = "h-12" }: { className?: string }) {
-  return <img src={logo.url} alt="LINKS 3D Wheel Alignment — German Technology" className={`${className} w-auto object-contain`} />;
+  return <img src={logo} alt="LINKS 3D Wheel Alignment — German Technology" className={`${className} w-auto max-w-full object-contain`} />;
 }
 
 export function Header() {
@@ -27,29 +27,29 @@ export function Header() {
     return () => window.removeEventListener("scroll", on);
   }, []);
   return (
-    <header className={`fixed inset-x-0 z-50 px-3 transition-all duration-300 ${scrolled ? "top-2" : "top-4"}`}>
-      <div className={`glass-card mx-auto flex max-w-7xl items-center justify-between gap-4 rounded-2xl px-4 transition-all duration-300 ${scrolled ? "h-16" : "h-20"}`}>
-        <Link to="/" aria-label="LINKS 3D home" className="shrink-0 rounded-md focus-visible:outline-2 focus-visible:outline-primary"><Logo className={scrolled ? "h-11" : "h-14"} /></Link>
-        <nav className="hidden items-center gap-7 lg:flex">
+    <header className={`fixed inset-x-0 z-50 px-3 transition-all duration-300 ${scrolled ? "top-2" : "top-3 sm:top-4"}`}>
+      <div className={`glass-card mx-auto flex max-w-7xl items-center justify-between gap-3 rounded-2xl px-3 transition-all duration-300 sm:px-4 ${scrolled ? "h-14 sm:h-16" : "h-16 sm:h-20"}`}>
+        <Link to="/" aria-label="LINKS 3D home" className="min-w-0 shrink rounded-md focus-visible:outline-2 focus-visible:outline-primary"><Logo className={scrolled ? "h-9 max-w-[8.5rem] sm:h-11 sm:max-w-[11rem]" : "h-11 max-w-[9.5rem] sm:h-14 sm:max-w-[13rem]"} /></Link>
+        <nav className="hidden min-w-0 items-center gap-4 xl:flex 2xl:gap-7">
           {NAV.map((n) => (
-            <Link key={n.to} to={n.to} className="nav-link text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground" activeProps={{ className: "text-foreground" }} activeOptions={{ exact: true }}>
+            <Link key={n.to} to={n.to} className="nav-link whitespace-nowrap text-[0.68rem] font-medium uppercase tracking-[0.12em] text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground 2xl:text-xs 2xl:tracking-[0.16em]" activeProps={{ className: "text-foreground" }} activeOptions={{ exact: true }}>
               {n.label}
             </Link>
           ))}
         </nav>
-        <div className="hidden items-center gap-2 lg:flex">
+        <div className="hidden shrink-0 items-center gap-2 xl:flex">
           <a href={BUSINESS.tel} aria-label="Call" className="rounded-full border border-border p-2.5 hover:border-primary"><Phone className="h-4 w-4" /></a>
           <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="rounded-full border border-border p-2.5 hover:border-primary"><MessageCircle className="h-4 w-4" /></a>
-          <Link to="/contact" className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold uppercase tracking-wider text-primary-foreground shadow-glow hover:opacity-90">Book a Service</Link>
+          <Link to="/contact" className="rounded-full bg-primary px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-primary-foreground shadow-glow hover:opacity-90 2xl:px-5 2xl:text-sm">Book a Service</Link>
         </div>
-        <button className="rounded-full p-2 lg:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
+        <button className="shrink-0 rounded-full p-2 xl:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
       </div>
       {open && (
-        <div className="glass-card mx-auto mt-2 max-w-7xl animate-rise rounded-2xl px-5 pb-6 lg:hidden">
+        <div className="glass-card mx-auto mt-2 max-h-[calc(100svh-6rem)] max-w-7xl animate-rise overflow-y-auto rounded-2xl px-5 pb-6 xl:hidden">
           {NAV.map((n) => (
             <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="block border-b border-border py-4 font-display text-xl font-semibold uppercase">{n.label}</Link>
           ))}
-          <div className="mt-5 grid grid-cols-3 gap-2">
+          <div className="mt-5 grid grid-cols-1 gap-2 min-[380px]:grid-cols-3">
             <Link to="/contact" onClick={() => setOpen(false)} className="rounded-md border border-border py-3 text-center text-sm font-semibold">Book</Link>
             <a href={BUSINESS.tel} className="rounded-md border border-border py-3 text-center text-sm font-semibold">Call Now</a>
             <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer" className="rounded-md bg-primary py-3 text-center text-sm font-semibold text-primary-foreground">WhatsApp</a>
@@ -63,9 +63,9 @@ export function Header() {
 export function Footer() {
   return (
     <footer className="border-t border-border bg-graphite">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 md:grid-cols-3">
-        <div>
-          <Logo className="h-24" />
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-5 sm:py-16 md:grid-cols-3">
+        <div className="min-w-0">
+          <Logo className="h-16 max-w-[14rem] sm:h-24" />
           <p className="mt-4 text-sm text-muted-foreground">Precision in every rotation. Sunday also open.</p>
         </div>
         <div className="space-y-3 text-sm">
@@ -122,11 +122,11 @@ export function Preloader() {
 
 export function PageHero({ eyebrow, title, sub }: { eyebrow: string; title: string; sub?: string }) {
   return (
-    <section className="relative overflow-hidden border-b border-border pb-14 pt-36">
-      <div className="mx-auto max-w-7xl px-5">
+    <section className="relative overflow-hidden border-b border-border pb-10 pt-28 sm:pb-14 sm:pt-36">
+      <div className="mx-auto max-w-7xl px-4 sm:px-5">
         <p className="eyebrow animate-rise">{eyebrow}</p>
-        <h1 className="mt-3 animate-rise font-display text-5xl font-bold md:text-7xl">{title}</h1>
-        {sub && <p className="mt-4 max-w-2xl animate-rise text-muted-foreground">{sub}</p>}
+        <h1 className="mt-3 animate-rise text-balance font-display text-4xl font-bold sm:text-5xl md:text-6xl xl:text-7xl">{title}</h1>
+        {sub && <p className="mt-4 max-w-2xl animate-rise text-sm text-muted-foreground sm:text-base">{sub}</p>}
       </div>
     </section>
   );

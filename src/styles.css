@@ -81,7 +81,9 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
   }
+  img, svg, video, iframe { max-width: 100%; }
   h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; text-transform: uppercase; }
 }
 

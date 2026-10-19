@@ -3,11 +3,13 @@ export const BUSINESS = {
   phone: "9393220111",
   tel: "tel:9393220111",
   whatsapp: "https://wa.me/919393220111",
-  address: "Beside Crystal Bakery, Pillar No. 99 & 100, Moghal Nagar, Ring Road, Hyderabad",
+  area: "Pillar Number 99, Attapur",
+  address: "Pillar Number 99, Sardar baugh, 13-6-431/6, Inner Ring Rd, Attapur, Netaji Nagar Colony, Langar Houz, Hyderabad, Telangana 500008",
   maps: "https://www.google.com/maps/search/?api=1&query=" +
-    encodeURIComponent("Beside Crystal Bakery, Pillar No. 99 & 100, Moghal Nagar, Ring Road, Hyderabad"),
+    encodeURIComponent("LINKS 3D Wheel Alignment, Pillar Number 99, Sardar baugh, 13-6-431/6, Inner Ring Rd, Attapur, Netaji Nagar Colony, Langar Houz, Hyderabad, Telangana 500008"),
   mapsEmbed: "https://www.google.com/maps?q=" +
-    encodeURIComponent("Moghal Nagar Ring Road Hyderabad") + "&output=embed",
+    encodeURIComponent("LINKS 3D Wheel Alignment, Pillar Number 99, Sardar baugh, 13-6-431/6, Inner Ring Rd, Attapur, Netaji Nagar Colony, Langar Houz, Hyderabad, Telangana 500008") +
+    "&ll=17.4194688,78.462976&z=17&output=embed",
 };
 
 export function waLink(message: string) {
@@ -16,8 +18,10 @@ export function waLink(message: string) {
 
 export type Brand = { name: string; slug: string; country: string; market: "Indian" | "International"; desc: string; categories: string[]; website: string; logo?: string | undefined };
 
-const logoFiles = import.meta.glob<{ default: { url: string } }>("../assets/brands/*.svg.asset.json", { eager: true });
-const logoFor = (slug: string) => logoFiles[`../assets/brands/${slug}.svg.asset.json`]?.default.url;
+const logoFiles = import.meta.glob<string>("../assets/brands/*.{svg,png}", { eager: true, query: "?url", import: "default" });
+const logoFor = (slug: string) =>
+  Object.entries(logoFiles).find(([path]) => path.endsWith(`/${slug}.svg`))?.[1]
+  ?? Object.entries(logoFiles).find(([path]) => path.endsWith(`/${slug}.png`))?.[1];
 const slugify = (n: string) => n.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
 type B = Omit<Brand, "slug" | "logo">;
@@ -86,5 +90,6 @@ export const SERVICES = [
   { title: "Tyre Changing", desc: "Professional tyre removal and installation with suitable equipment.", when: "Worn, damaged or upgraded tyres." },
   { title: "Nitrogen Air", desc: "Nitrogen inflation for those who prefer it. Correct pressure and regular checks still matter.", when: "Any visit — ask at the counter." },
   { title: "Rim Throw", desc: "Rim service as listed on our board. Ask us for details about this service.", when: "Bent or damaged rims — call us to discuss." },
+  { title: "Alloy Wheel Throw", desc: "Alloy wheel throw checked and corrected so the wheel runs true.", when: "Vibration, a wobbling alloy wheel, or after a kerb or pothole hit." },
   { title: "Tyres & Tubes", desc: "All types of tyres and tubes for different vehicles, subject to availability.", when: "Enquire with your tyre size." },
 ];
