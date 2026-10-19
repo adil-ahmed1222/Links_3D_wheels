@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ChevronDown, Crosshair, Gauge, Wrench, Phone, MessageCircle, MapPin } from "lucide-react";
 import hero from "@/assets/hero-car.jpg";
-import alignment from "@/assets/alignment.jpg";
+import technology from "@/assets/wheel-machine.jpg";
 import tread from "@/assets/tyre-tread.jpg";
 import logo from "@/assets/links3d-logo.png";
 import { BRANDS, BUSINESS, SERVICES } from "@/lib/business";
@@ -97,12 +97,10 @@ function Index() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden">
-        <img src={alignment} alt="Car on a 3D wheel alignment lift with targets" loading="lazy" width={1600} height={1008} className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-hero-overlay" />
-        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-5 sm:py-32">
-          <p className="eyebrow">German Technology</p>
-          <h2 className="mt-3 max-w-2xl text-balance font-display text-4xl font-bold sm:text-5xl md:text-7xl">Precision is not an option. It's the standard.</h2>
+      <section className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-5 sm:py-24 lg:grid-cols-2">
+        <div>
+          <p className="eyebrow">Cutting-edge technology</p>
+          <h2 className="mt-3 text-balance font-display text-4xl font-bold sm:text-5xl md:text-6xl">Precision is not an option. It's the standard.</h2>
           <div className="mt-6 h-px w-64 overflow-hidden bg-border"><div className="h-full w-1/2 animate-scan bg-primary" /></div>
           <ul className="mt-10 grid max-w-xl gap-5 sm:grid-cols-2">
             {[[Crosshair, "3D wheel alignment"], [Gauge, "Equipment-focused precision"], [Wrench, "Professional tyre care"], [MessageCircle, "Customer-focused service"]].map(([Icon, t]) => {
@@ -111,6 +109,7 @@ function Index() {
             })}
           </ul>
         </div>
+        <img src={technology} alt="Workshop machine straightening an alloy wheel" loading="lazy" width={900} height={1200} className="aspect-[4/5] w-full rounded-2xl object-cover sm:aspect-square" />
       </section>
 
       <section className="border-y border-border py-24">
