@@ -7,7 +7,7 @@ export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
       { title: "Services — 3D Wheel Alignment, Balancing, Nitrogen | LINKS 3D" },
-      { name: "description", content: `3D wheel alignment, wheel balancing, tyre changing, nitrogen air, rim throw, alloy wheel throw, and tyres & tubes at LINKS 3D Wheel Alignment, ${BUSINESS.address}.` },
+      { name: "description", content: `3D wheel alignment, wheel balancing, tyre changing, nitrogen air, wheel repair, alloy wheel repair and throw, and tyres & tubes at LINKS 3D Wheel Alignment, ${BUSINESS.address}.` },
       { property: "og:title", content: "Services | LINKS 3D Wheel Alignment" },
       { property: "og:description", content: "Alignment, balancing, tyre change and nitrogen air in Hyderabad." },
     ],

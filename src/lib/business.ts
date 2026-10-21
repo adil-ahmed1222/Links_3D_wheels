@@ -105,7 +105,7 @@ export const SERVICES = [
   { title: "Wheel Balancing", desc: "Helps reduce vibration and promotes a smoother drive.", when: "Steering vibration at speed, or when new tyres are fitted." },
   { title: "Tyre Changing", desc: "Professional tyre removal and installation with suitable equipment.", when: "Worn, damaged or upgraded tyres.", specialist: true },
   { title: "Nitrogen Air", desc: "Nitrogen inflation for those who prefer it. Correct pressure and regular checks still matter.", when: "Any visit — ask at the counter." },
-  { title: "Rim Throw", desc: "Rim service as listed on our board. Ask us for details about this service.", when: "Bent or damaged rims — call us to discuss." },
-  { title: "Alloy Wheel Throw", desc: "Alloy wheel throw checked and corrected so the wheel runs true.", when: "Vibration, a wobbling alloy wheel, or after a kerb or pothole hit." },
+  { title: "Wheel Repair", desc: "Wheel repair for bent or damaged wheels.", when: "A bent wheel, a damaged rim, or after a kerb or pothole hit." },
+  { title: "Alloy Wheel Repair and Throw", desc: "Alloy wheel repair and throw, checked and corrected so the wheel runs true.", when: "Vibration, a wobbling alloy wheel, or after a kerb or pothole hit." },
   { title: "Tyres & Tubes", desc: "All types of tyres and tubes for different vehicles, subject to availability.", when: "Enquire with your tyre size.", specialist: true },
 ];

@@ -33,8 +33,8 @@ create table public.service_requests (
       'Wheel Balancing',
       'Tyre Changing',
       'Nitrogen Air',
-      'Rim Throw',
-      'Alloy Wheel Throw',
+      'Wheel Repair',
+      'Alloy Wheel Repair and Throw',
       'Tyres & Tubes'
     )
   ),
