@@ -54,7 +54,7 @@ function Contact() {
           <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer" className="flex items-center gap-4 glass-card rounded-2xl p-5 hover:border-primary"><MessageCircle className="text-primary" /><div><p className="eyebrow">WhatsApp</p><p className="font-display text-2xl font-bold">Chat with us</p></div></a>
           <a href={BUSINESS.maps} target="_blank" rel="noreferrer" className="flex items-center gap-4 glass-card rounded-2xl p-5 hover:border-primary"><MapPin className="shrink-0 text-primary" /><div><p className="eyebrow">Get directions</p><p className="text-sm text-muted-foreground">{BUSINESS.address}</p></div></a>
           <p className="text-sm text-muted-foreground">Sunday also open. Please call to confirm timings.</p>
-          <iframe title="Map to LINKS 3D" src={BUSINESS.mapsEmbed} loading="lazy" className="h-64 w-full rounded-xl border border-border grayscale" />
+          <iframe title="Map to LINKS 3D Wheel Alignment, Mogal Nagar" src={BUSINESS.mapsEmbed} loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="h-72 w-full max-w-full rounded-xl border border-border grayscale sm:h-80" />
         </div>
       </section>
     </>

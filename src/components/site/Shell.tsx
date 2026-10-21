@@ -70,7 +70,7 @@ export function Footer() {
         </div>
         <div className="space-y-3 text-sm">
           <p className="eyebrow">Visit</p>
-          <a href={BUSINESS.maps} target="_blank" rel="noreferrer" className="flex gap-2 text-muted-foreground hover:text-foreground"><MapPin className="h-4 w-4 shrink-0" />{BUSINESS.address}</a>
+          <a href={BUSINESS.maps} target="_blank" rel="noreferrer" className="flex min-w-0 items-start gap-2 text-muted-foreground hover:text-foreground"><MapPin className="mt-0.5 h-4 w-4 shrink-0" /><span>{BUSINESS.address}</span></a>
           <a href={BUSINESS.tel} className="flex gap-2 text-muted-foreground hover:text-foreground"><Phone className="h-4 w-4 shrink-0" />{BUSINESS.phone}</a>
           <a href={TYRE_SPECIALIST.tel} className="flex gap-2 text-muted-foreground hover:text-foreground"><Phone className="h-4 w-4 shrink-0 text-primary" /><span><span className="text-foreground">{TYRE_SPECIALIST.display}</span> — {TYRE_SPECIALIST.name}, {TYRE_SPECIALIST.role}. Wheel puncture and tyre services.</span></a>
         </div>

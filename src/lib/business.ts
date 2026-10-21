@@ -1,15 +1,17 @@
+const ADDRESS = "13-6-431/C/14/1, Mogal Nagar, Ring Road, beside Madhur Sweets and Crystal Bakery, Hyderabad";
+// Beside Madhur Sweets (17.377764, 78.429635) and Crystal Bakery (17.377678, 78.429563) on Ring Road.
+const LAT = 17.37772;
+const LNG = 78.4296;
+
 export const BUSINESS = {
   name: "LINKS 3D Wheel Alignment",
   phone: "9393220111",
   tel: "tel:9393220111",
   whatsapp: "https://wa.me/919393220111",
-  area: "Pillar Number 99, Attapur",
-  address: "Pillar Number 99, Sardar baugh, 13-6-431/6, Inner Ring Rd, Attapur, Netaji Nagar Colony, Langar Houz, Hyderabad, Telangana 500008",
-  maps: "https://www.google.com/maps/search/?api=1&query=" +
-    encodeURIComponent("LINKS 3D Wheel Alignment, Pillar Number 99, Sardar baugh, 13-6-431/6, Inner Ring Rd, Attapur, Netaji Nagar Colony, Langar Houz, Hyderabad, Telangana 500008"),
-  mapsEmbed: "https://www.google.com/maps?q=" +
-    encodeURIComponent("LINKS 3D Wheel Alignment, Pillar Number 99, Sardar baugh, 13-6-431/6, Inner Ring Rd, Attapur, Netaji Nagar Colony, Langar Houz, Hyderabad, Telangana 500008") +
-    "&ll=17.4194688,78.462976&z=17&output=embed",
+  area: "Mogal Nagar, Ring Road",
+  address: ADDRESS,
+  maps: `https://www.google.com/maps/dir/?api=1&destination=${LAT},${LNG}`,
+  mapsEmbed: `https://www.google.com/maps?q=${LAT},${LNG}+(${encodeURIComponent("LINKS 3D Wheel Alignment")})&z=18&output=embed`,
 };
 
 export function waLink(message: string) {

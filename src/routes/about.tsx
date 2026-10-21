@@ -7,7 +7,7 @@ import { BUSINESS } from "@/lib/business";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About LINKS 3D Wheel Alignment — Attapur, Hyderabad" },
+      { title: "About LINKS 3D Wheel Alignment — Mogal Nagar, Hyderabad" },
       { name: "description", content: `About LINKS 3D Wheel Alignment, a tyre and wheel service workshop at ${BUSINESS.address}. FAQs on alignment, balancing and tyres.` },
       { property: "og:title", content: "About LINKS 3D Wheel Alignment" },
       { property: "og:description", content: `Tyre and wheel services at LINKS 3D Wheel Alignment, ${BUSINESS.address}.` },
